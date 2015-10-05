@@ -1,0 +1,65 @@
+<ion-view view-title="Peña Manager - Calc">
+	<ion-content>
+		<div class="list">
+			<div class="item item-input-inset">
+				<label class="item-input-wrapper">
+					<input type="text" placeholder="Nombre" ng-model="newPartner.name" ng-change="verifyAmount(newPartner)">
+				</label>
+				<label class="item-input-wrapper">
+					<input type="number" placeholder="Importe" ng-model="newPartner.amount">
+				</label>
+				<button class="button button-small button-positive" ng-disabled="!newPartner.name || !(newPartner.amount >= 0)" ng-click="addPartner()" ng-show="!editing">Agregar</button>
+				<button class="button button-small button-positive" ng-disabled="!newPartner.name || !(newPartner.amount >= 0)" ng-click="endEditPartner()" ng-show="editing">Aceptar</button>
+			</div>
+		</div>
+		<!-- Total -->
+		<div class="row">
+			<div class="col">Total ({{partners.length}}):</div>
+			<div class="col">{{total | currency}}</div>
+			<div class="col">Cada uno:</div>
+			<div class="col">{{totalEach | currency}}</div>
+		</div>
+		<!-- Lista -->
+		<ion-list can-swipe="listCanSwipe">
+			<ion-item>
+				<div class="row">
+					<div class="col-50">
+						<h2>Nombre</h2>
+					</div>
+					<div class="col-25">
+						Gasto
+					</div>
+					<div class="col-25">
+						Falta
+					</div>
+				</div>
+			</ion-item>
+			<ion-item ng-repeat="partner in partners | orderBy:'name'" class="item-remove-animate">
+				<div class="row">
+					<div class="col-50">
+						<h2>{{partner.name}}</h2>
+					</div>
+					<div class="col-25">
+						{{partner.amount | currency}}
+					</div>
+					<div class="col-25">
+						{{totalEach - partner.amount | currency}}
+					</div>
+				</div>
+				<ion-option-button class="button-assertive" ng-click="deletePartner(partner)">
+					Borrar
+				</ion-option-button>
+				<ion-option-button class="button-positive" ng-click="editPartner(partner)">
+					Editar
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+		<div class="row">
+			<div class="col text-center">
+				<button class="button button-royal" ng-click="saveAllPartners()">
+					Guardar Asistentes
+				</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
