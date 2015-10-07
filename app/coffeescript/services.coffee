@@ -3,6 +3,7 @@ angular.module('starter.services', [])
 .factory 'Partners', ['$localstorage', ($localstorage) ->
 
 	partners = $localstorage.getObject('partners')
+	partnersNumber = $localstorage.get('partnersNumber', 0)
 
 	all: ->
 		partners
@@ -15,7 +16,12 @@ angular.module('starter.services', [])
 			if partner.id is parseInt(chatId) then return partner
 		null
 
-	saveAll: (partners) ->
+	getPartnersNumber: ->
+		+partnersNumber
+
+	saveAll: (partners, partnersNumber) ->
+		console.log partnersNumber
 		$localstorage.setObject('partners', partners)
+		$localstorage.set('partnersNumber', partnersNumber)
 
 ]

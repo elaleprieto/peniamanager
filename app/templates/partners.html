@@ -27,7 +27,7 @@
 						<h2>Nombre</h2>
 					</div>
 					<div class="col-25">
-						Gasto
+						Gastó
 					</div>
 					<div class="col-25">
 						Falta
@@ -54,6 +54,18 @@
 				</ion-option-button>
 			</ion-item>
 		</ion-list>
+		<div class="row">
+			<div class="col col-center text-right">
+				Total Asistentes:
+			</div>
+			<div class="col col-center">
+				<div class="item-input-inset">
+					<label class="item-input-wrapper">
+						<input type="number" class="text-center" placeholder="Asistentes" ng-model="partnersNumber" ng-change="calculate(partnersNumber)">
+					</label>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col text-center">
 				<button class="button button-royal" ng-click="saveAllPartners()">

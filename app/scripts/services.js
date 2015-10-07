@@ -2,8 +2,9 @@
 (function() {
   angular.module('starter.services', []).factory('Partners', [
     '$localstorage', function($localstorage) {
-      var partners;
+      var partners, partnersNumber;
       partners = $localstorage.getObject('partners');
+      partnersNumber = $localstorage.get('partnersNumber', 0);
       return {
         all: function() {
           return partners;
@@ -21,8 +22,13 @@
           }
           return null;
         },
-        saveAll: function(partners) {
-          return $localstorage.setObject('partners', partners);
+        getPartnersNumber: function() {
+          return +partnersNumber;
+        },
+        saveAll: function(partners, partnersNumber) {
+          console.log(partnersNumber);
+          $localstorage.setObject('partners', partners);
+          return $localstorage.set('partnersNumber', partnersNumber);
         }
       };
     }
